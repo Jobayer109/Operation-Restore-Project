@@ -6,7 +6,7 @@ import "./App.css";
 TODO: Handle user input fields    -----> Done
 TODO: Handle operations           -----> Done
 TODO: Handle a list of histories  -----> Done
-TODO: Render history list         -----> 
+TODO: Render history list         -----> Done
 TODO: Restore the history         -----> 
 */
 
@@ -19,6 +19,7 @@ function App() {
   const [inputState, setInputState] = useState({ ...inputObject });
   const [result, setResult] = useState(0);
   const [histories, setHistories] = useState([]);
+  const [restoreHistory, setRestoreHistory] = useState(null);
 
   const handleChange = (e) => {
     setInputState({
@@ -51,6 +52,12 @@ function App() {
     setHistories([newHistory, ...histories]);
   };
 
+  const handleRestore = (historyItem) => {
+    setInputState(historyItem.inputs);
+    setResult(historyItem.result);
+    setRestoreHistory(historyItem);
+  };
+
   return (
     <>
       <h1>Operation and Restore project</h1>
@@ -79,22 +86,40 @@ function App() {
       </div>
       <div>
         <h4>Operation Histories</h4>
-        <ul>
-          {histories.map((historyItem) => (
-            <li key={historyItem.id}>
-              <p>
-                Operation: {historyItem.inputs.a} {historyItem.operator}{" "}
-                {historyItem.inputs.b}{" "}
-              </p>
-              <p>Result:{historyItem.result}</p>
-              <small>Date: {historyItem.date.toLocaleDateString()}</small>{" "}
-              <br />
-              <small>Time: {historyItem.date.toLocaleTimeString()}</small>{" "}
-              <br />
-              <button>Restore</button>
-            </li>
-          ))}
-        </ul>
+        {histories.length === 0 ? (
+          <p>
+            <small>No Histories Found</small>
+          </p>
+        ) : (
+          <ul>
+            {histories.map((historyItem) => (
+              <li key={historyItem.id}>
+                <p>
+                  Operation: {historyItem.inputs.a} {historyItem.operator}{" "}
+                  {historyItem.inputs.b}{" "}
+                </p>
+                <p>Result:{historyItem.result}</p>
+                <small>
+                  Date: {historyItem.date.toLocaleDateString()}
+                </small>{" "}
+                <br />
+                <small>
+                  Time: {historyItem.date.toLocaleTimeString()}
+                </small>{" "}
+                <br />
+                <button
+                  onClick={() => handleRestore(historyItem)}
+                  disabled={
+                    restoreHistory !== null &&
+                    restoreHistory.id === historyItem.id
+                  }
+                >
+                  Restore
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );
