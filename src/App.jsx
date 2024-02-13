@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./App.css";
 
 /*
-TODO: Handle user input fields    -----> 
-TODO: Handle operations           -----> 
+TODO: Handle user input fields    -----> Done
+TODO: Handle operations           -----> Done
 TODO: Handle a list of histories  -----> 
 TODO: Render history list         -----> 
 TODO: Restore the history         -----> 
@@ -16,6 +16,7 @@ const inputObject = {
 
 function App() {
   const [inputState, setInputState] = useState({ ...inputObject });
+  const [result, setResult] = useState(0);
 
   const handleChange = (e) => {
     setInputState({
@@ -24,11 +25,19 @@ function App() {
     });
   };
 
+  const handleOperations = (operator) => {
+    const f = new Function(
+      "operator",
+      `return ${inputState.a} ${operator} ${inputState.b} `
+    );
+    setResult(f(operator));
+  };
+
   return (
     <>
       <h1>Operation and Restore project</h1>
       <div>
-        <h3>Result: 20</h3>
+        <h3>Result: {result}</h3>
         <div>
           <input
             type="number"
@@ -44,10 +53,10 @@ function App() {
           />
         </div>
         <div>
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>/</button>
+          <button onClick={() => handleOperations("+")}>+</button>
+          <button onClick={() => handleOperations("-")}>-</button>
+          <button onClick={() => handleOperations("*")}>*</button>
+          <button onClick={() => handleOperations("/")}>/</button>
         </div>
       </div>
       <div>
@@ -55,7 +64,7 @@ function App() {
         <ul>
           <li>
             <p>Operation: 10 + 20 </p>
-            <p>Result: 10</p>
+            <p>Result:23</p>
             <small>Date: 2/13/2024</small> <br />
             <small>Time: 9:24:13 AM</small> <br />
             <button>Restore</button>
