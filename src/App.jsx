@@ -1,6 +1,7 @@
 import { useState } from "react";
 import shortid from "shortid";
 import "./App.css";
+import Button from "./components/UI/Button";
 import TextInput from "./components/UI/TextInput";
 
 const inputObject = {
@@ -32,7 +33,7 @@ function App() {
       `return ${inputState.a} ${operator} ${inputState.b} `
     );
     const result = f(operator);
-    setResult(result);
+    setResult(result.toFixed(2));
 
     const newHistory = {
       id: shortid.generate(),
@@ -65,26 +66,28 @@ function App() {
               onChange={handleChange}
             />
           ))}
-
-          {/* <TextInput
-            type="number"
-            name="a"
-            value={inputState.a}
-            onChange={handleChange}
-          />
-
-          <input
-            type="number"
-            name="b"
-            value={inputState.b}
-            onChange={handleChange}
-          /> */}
         </div>
         <div>
-          <button onClick={() => handleOperations("+")}>+</button>
-          <button onClick={() => handleOperations("-")}>-</button>
-          <button onClick={() => handleOperations("*")}>*</button>
-          <button onClick={() => handleOperations("/")}>/</button>
+          <Button
+            type="button"
+            text="+"
+            onClick={() => handleOperations("+")}
+          />
+          <Button
+            type={"button"}
+            text={"-"}
+            onClick={() => handleOperations("-")}
+          />
+          <Button
+            type={"button"}
+            text={"*"}
+            onClick={() => handleOperations("*")}
+          />
+          <Button
+            type={"button"}
+            text={"/"}
+            onClick={() => handleOperations("/")}
+          />
         </div>
       </div>
       <div>
@@ -101,7 +104,7 @@ function App() {
                   Operation: {historyItem.inputs.a} {historyItem.operator}{" "}
                   {historyItem.inputs.b}{" "}
                 </p>
-                <p>Result:{historyItem.result}</p>
+                <p>Result:{historyItem.result.toFixed(2)}</p>
                 <small>
                   Date: {historyItem.date.toLocaleDateString()}
                 </small>{" "}
