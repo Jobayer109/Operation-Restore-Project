@@ -1,9 +1,9 @@
 import { useState } from "react";
 import shortid from "shortid";
 import "./App.css";
+import HistorySection from "./components/History/HistorySection";
 import InputSection from "./components/InputSection/InputSection";
 import OperationSection from "./components/Operations/OperationSection";
-
 const inputObject = {
   a: 30,
   b: 10,
@@ -13,7 +13,7 @@ function App() {
   const [inputState, setInputState] = useState({ ...inputObject });
   const [result, setResult] = useState(0);
   const [histories, setHistories] = useState([]);
-  const [restoreHistory, setRestoreHistory] = useState(null);
+  const [restoreHistory, setRestoreHistory] = useState({});
 
   const handleChange = (e) => {
     setInputState({
@@ -65,49 +65,18 @@ function App() {
 
         {/* Input section */}
         <InputSection inputState={inputState} handleChange={handleChange} />
+
         {/* Operation section */}
         <OperationSection
           handleOperations={handleOperations}
           handleClearState={handleClearState}
         />
       </div>
-      <div>
-        <h4>Operation Histories</h4>
-        {histories.length === 0 ? (
-          <p>
-            <small>No Histories Found</small>
-          </p>
-        ) : (
-          <ul>
-            {histories.map((historyItem) => (
-              <li key={historyItem.id}>
-                <p>
-                  Operation: {historyItem.inputs.a} {historyItem.operator}{" "}
-                  {historyItem.inputs.b}{" "}
-                </p>
-                <p>Result:{historyItem.result}</p>
-                <small>
-                  Date: {historyItem.date.toLocaleDateString()}
-                </small>{" "}
-                <br />
-                <small>
-                  Time: {historyItem.date.toLocaleTimeString()}
-                </small>{" "}
-                <br />
-                <button
-                  onClick={() => handleRestore(historyItem)}
-                  disabled={
-                    restoreHistory !== null &&
-                    restoreHistory.id === historyItem.id
-                  }
-                >
-                  Restore
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <HistorySection
+        histories={histories}
+        handleRestore={handleRestore}
+        restoreHistory={restoreHistory}
+      />
     </>
   );
 }

@@ -27,6 +27,16 @@ const OperationSection = ({ handleOperations, handleClearState }) => {
     },
     {
       id: shortid.generate(),
+      text: "%",
+      onClick: () => handleOperations("%"),
+    },
+    {
+      id: shortid.generate(),
+      text: "**",
+      onClick: () => handleOperations("**"),
+    },
+    {
+      id: shortid.generate(),
       text: "Clear",
       onClick: handleClearState,
     },
