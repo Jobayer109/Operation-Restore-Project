@@ -1,22 +1,24 @@
 import { useState } from "react";
+import shortid from "shortid";
 import "./App.css";
 
 /*
 TODO: Handle user input fields    -----> Done
 TODO: Handle operations           -----> Done
-TODO: Handle a list of histories  -----> 
+TODO: Handle a list of histories  -----> Done
 TODO: Render history list         -----> 
 TODO: Restore the history         -----> 
 */
 
 const inputObject = {
-  a: 0,
-  b: 0,
+  a: 30,
+  b: 10,
 };
 
 function App() {
   const [inputState, setInputState] = useState({ ...inputObject });
   const [result, setResult] = useState(0);
+  const [histories, setHistories] = useState([]);
 
   const handleChange = (e) => {
     setInputState({
@@ -26,11 +28,27 @@ function App() {
   };
 
   const handleOperations = (operator) => {
+    if (!inputState.a || !inputState.b) {
+      alert("Input a valid number without '0'");
+      return;
+    }
+
     const f = new Function(
       "operator",
       `return ${inputState.a} ${operator} ${inputState.b} `
     );
-    setResult(f(operator));
+    const result = f(operator);
+    setResult(result);
+
+    const newHistory = {
+      id: shortid.generate(),
+      inputs: { ...inputState },
+      operator,
+      result,
+      date: new Date(),
+    };
+
+    setHistories([newHistory, ...histories]);
   };
 
   return (
@@ -62,13 +80,20 @@ function App() {
       <div>
         <h4>Operation Histories</h4>
         <ul>
-          <li>
-            <p>Operation: 10 + 20 </p>
-            <p>Result:23</p>
-            <small>Date: 2/13/2024</small> <br />
-            <small>Time: 9:24:13 AM</small> <br />
-            <button>Restore</button>
-          </li>
+          {histories.map((historyItem) => (
+            <li key={historyItem.id}>
+              <p>
+                Operation: {historyItem.inputs.a} {historyItem.operator}{" "}
+                {historyItem.inputs.b}{" "}
+              </p>
+              <p>Result:{historyItem.result}</p>
+              <small>Date: {historyItem.date.toLocaleDateString()}</small>{" "}
+              <br />
+              <small>Time: {historyItem.date.toLocaleTimeString()}</small>{" "}
+              <br />
+              <button>Restore</button>
+            </li>
+          ))}
         </ul>
       </div>
     </>
