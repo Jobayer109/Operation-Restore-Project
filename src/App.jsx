@@ -1,14 +1,47 @@
+import { useState } from "react";
 import "./App.css";
 
+/*
+TODO: Handle user input fields    -----> 
+TODO: Handle operations           -----> 
+TODO: Handle a list of histories  -----> 
+TODO: Render history list         -----> 
+TODO: Restore the history         -----> 
+*/
+
+const inputObject = {
+  a: 0,
+  b: 0,
+};
+
 function App() {
+  const [inputState, setInputState] = useState({ ...inputObject });
+
+  const handleChange = (e) => {
+    setInputState({
+      ...inputState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
       <h1>Operation and Restore project</h1>
       <div>
         <h3>Result: 20</h3>
         <div>
-          <input type="number" />
-          <input type="number" />
+          <input
+            type="number"
+            name="a"
+            value={inputState.a}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="b"
+            value={inputState.b}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <button>+</button>
