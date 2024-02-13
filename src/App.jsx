@@ -1,8 +1,8 @@
 import { useState } from "react";
 import shortid from "shortid";
 import "./App.css";
+import InputSection from "./components/InputSection/InputSection";
 import Button from "./components/UI/Button";
-import TextInput from "./components/UI/TextInput";
 
 const inputObject = {
   a: 30,
@@ -57,16 +57,10 @@ function App() {
       <h1>Operation and Restore project</h1>
       <div>
         <h3>Result: {result}</h3>
-        <div>
-          {Object.entries(inputState).map((i, index) => (
-            <TextInput
-              key={index}
-              name={i[0]}
-              value={i[1]}
-              onChange={handleChange}
-            />
-          ))}
-        </div>
+
+        {/* Input section */}
+        <InputSection inputState={inputState} handleChange={handleChange} />
+
         <div>
           <Button
             type="button"
@@ -74,18 +68,18 @@ function App() {
             onClick={() => handleOperations("+")}
           />
           <Button
-            type={"button"}
-            text={"-"}
+            type="button"
+            text="-"
             onClick={() => handleOperations("-")}
           />
           <Button
-            type={"button"}
-            text={"*"}
+            type="button"
+            text="*"
             onClick={() => handleOperations("*")}
           />
           <Button
-            type={"button"}
-            text={"/"}
+            type="button"
+            text="/"
             onClick={() => handleOperations("/")}
           />
         </div>

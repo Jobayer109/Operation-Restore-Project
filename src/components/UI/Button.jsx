@@ -35,4 +35,9 @@ Button.propTypes = {
   customStyle: PropTypes.object,
 };
 
+Button.defaultProps = {
+  disabled: false,
+  customStyle: {},
+};
+
 export default Button;
