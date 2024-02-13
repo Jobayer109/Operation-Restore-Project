@@ -2,7 +2,7 @@ import { useState } from "react";
 import shortid from "shortid";
 import "./App.css";
 import InputSection from "./components/InputSection/InputSection";
-import Button from "./components/UI/Button";
+import OperationSection from "./components/Operations/OperationSection";
 
 const inputObject = {
   a: 30,
@@ -33,7 +33,7 @@ function App() {
       `return ${inputState.a} ${operator} ${inputState.b} `
     );
     const result = f(operator);
-    setResult(result.toFixed(2));
+    setResult(result);
 
     const newHistory = {
       id: shortid.generate(),
@@ -44,6 +44,11 @@ function App() {
     };
 
     setHistories([newHistory, ...histories]);
+  };
+
+  const handleClearState = () => {
+    setInputState(inputObject);
+    setResult(0);
   };
 
   const handleRestore = (historyItem) => {
@@ -60,29 +65,11 @@ function App() {
 
         {/* Input section */}
         <InputSection inputState={inputState} handleChange={handleChange} />
-
-        <div>
-          <Button
-            type="button"
-            text="+"
-            onClick={() => handleOperations("+")}
-          />
-          <Button
-            type="button"
-            text="-"
-            onClick={() => handleOperations("-")}
-          />
-          <Button
-            type="button"
-            text="*"
-            onClick={() => handleOperations("*")}
-          />
-          <Button
-            type="button"
-            text="/"
-            onClick={() => handleOperations("/")}
-          />
-        </div>
+        {/* Operation section */}
+        <OperationSection
+          handleOperations={handleOperations}
+          handleClearState={handleClearState}
+        />
       </div>
       <div>
         <h4>Operation Histories</h4>
@@ -98,7 +85,7 @@ function App() {
                   Operation: {historyItem.inputs.a} {historyItem.operator}{" "}
                   {historyItem.inputs.b}{" "}
                 </p>
-                <p>Result:{historyItem.result.toFixed(2)}</p>
+                <p>Result:{historyItem.result}</p>
                 <small>
                   Date: {historyItem.date.toLocaleDateString()}
                 </small>{" "}

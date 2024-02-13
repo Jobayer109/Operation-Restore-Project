@@ -12,7 +12,7 @@ const Button = ({ text, type, onClick, disabled, customStyle }) => {
     fontSize: "1rem",
     fontWeight: "600",
     marginRight: "5px",
-    width: "2rem",
+
     border: "1px solid gray",
     borderRadius: "4px",
     cursor: "pointer",
