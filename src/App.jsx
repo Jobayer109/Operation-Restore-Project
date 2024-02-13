@@ -1,14 +1,7 @@
 import { useState } from "react";
 import shortid from "shortid";
 import "./App.css";
-
-/*
-TODO: Handle user input fields    -----> Done
-TODO: Handle operations           -----> Done
-TODO: Handle a list of histories  -----> Done
-TODO: Render history list         -----> Done
-TODO: Restore the history         -----> 
-*/
+import TextInput from "./components/UI/TextInput";
 
 const inputObject = {
   a: 30,
@@ -64,18 +57,28 @@ function App() {
       <div>
         <h3>Result: {result}</h3>
         <div>
-          <input
+          {Object.entries(inputState).map((i, index) => (
+            <TextInput
+              key={index}
+              name={i[0]}
+              value={i[1]}
+              onChange={handleChange}
+            />
+          ))}
+
+          {/* <TextInput
             type="number"
             name="a"
             value={inputState.a}
             onChange={handleChange}
           />
+
           <input
             type="number"
             name="b"
             value={inputState.b}
             onChange={handleChange}
-          />
+          /> */}
         </div>
         <div>
           <button onClick={() => handleOperations("+")}>+</button>
@@ -126,3 +129,11 @@ function App() {
 }
 
 export default App;
+
+/*
+TODO: Handle user input fields    -----> Done
+TODO: Handle operations           -----> Done
+TODO: Handle a list of histories  -----> Done
+TODO: Render history list         -----> Done
+TODO: Restore the history         -----> Done
+*/
