@@ -1,0 +1,33 @@
+.container {
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid gray;
+  margin-top: 2rem;
+  border-radius: 5px;
+  padding: 1.5rem;
+  background-color: rgb(33, 66, 66);
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+}
+
+/* .input__section {
+  align-items: start;
+  flex-direction: column;
+} */
+h3 {
+  margin-left: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+h3 > span {
+  color: yellow;
+  font-weight: normal;
+}

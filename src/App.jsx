@@ -58,26 +58,25 @@ function App() {
   };
 
   return (
-    <>
-      <h1>Operation and Restore project</h1>
-      <div>
-        <h3>Result: {result}</h3>
-
-        {/* Input section */}
+    <div className="container">
+      <h1>Mathematic Operations and Restore</h1>
+      <hr />
+      <div className="input__section">
+        <h3>
+          Result: <span>{result}</span>
+        </h3>
         <InputSection inputState={inputState} handleChange={handleChange} />
-
-        {/* Operation section */}
-        <OperationSection
-          handleOperations={handleOperations}
-          handleClearState={handleClearState}
-        />
       </div>
+      <OperationSection
+        handleOperations={handleOperations}
+        handleClearState={handleClearState}
+      />
       <HistorySection
         histories={histories}
         handleRestore={handleRestore}
         restoreHistory={restoreHistory}
       />
-    </>
+    </div>
   );
 }
 
