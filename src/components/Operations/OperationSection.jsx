@@ -1,49 +1,55 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
+import { AiOutlineClear } from "react-icons/ai";
+import {
+  CgMathDivide,
+  CgMathMinus,
+  CgMathPercent,
+  CgMathPlus,
+} from "react-icons/cg";
+import { RxCross2 } from "react-icons/rx";
+
 import shortid from "shortid";
 import Button from "../UI/Button";
+import "./operations.css";
 
 const OperationSection = ({ handleOperations, handleClearState }) => {
   const operations = [
     {
       id: shortid.generate(),
-      text: "+",
+      text: <CgMathPlus />,
       onClick: () => handleOperations("+"),
     },
     {
       id: shortid.generate(),
-      text: "-",
+      text: <CgMathMinus />,
       onClick: () => handleOperations("-"),
     },
     {
       id: shortid.generate(),
-      text: "*",
+      text: <RxCross2 />,
       onClick: () => handleOperations("*"),
     },
     {
       id: shortid.generate(),
-      text: "/",
+      text: <CgMathDivide />,
       onClick: () => handleOperations("/"),
     },
     {
       id: shortid.generate(),
-      text: "%",
+      text: <CgMathPercent />,
       onClick: () => handleOperations("%"),
     },
+
     {
       id: shortid.generate(),
-      text: "**",
-      onClick: () => handleOperations("**"),
-    },
-    {
-      id: shortid.generate(),
-      text: "Clear",
+      text: <AiOutlineClear />,
       onClick: handleClearState,
     },
   ];
 
   return (
-    <div>
+    <div className="operation__btn">
       {operations.map((ops) => (
         <Button
           key={ops.id}
