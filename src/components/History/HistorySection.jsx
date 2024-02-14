@@ -17,7 +17,7 @@ const HistorySection = ({ histories, restoreHistory, handleRestore }) => {
             {histories.map((historyItem) => (
               <HistoryList
                 key={historyItem.id}
-                disabled={restoreHistory === historyItem.id}
+                disabled={restoreHistory.id === historyItem.id ? true : false}
                 handleRestore={handleRestore}
                 historyItem={historyItem}
               />

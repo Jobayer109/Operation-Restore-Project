@@ -8,12 +8,11 @@ import {
   CgMathPlus,
 } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
-
 import shortid from "shortid";
 import Button from "../UI/Button";
 import "./operations.css";
 
-const OperationSection = ({ handleOperations, handleClearState }) => {
+const OperationSection = ({ handleOperations, disabled, handleClearState }) => {
   const operations = [
     {
       id: shortid.generate(),
@@ -56,6 +55,7 @@ const OperationSection = ({ handleOperations, handleClearState }) => {
           type="button"
           text={ops.text}
           onClick={ops.onClick}
+          disabled={disabled}
         />
       ))}
     </div>
