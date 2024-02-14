@@ -5,8 +5,8 @@ import HistorySection from "./components/History/HistorySection";
 import InputSection from "./components/InputSection/InputSection";
 import OperationSection from "./components/Operations/OperationSection";
 const inputObject = {
-  a: 30,
-  b: 10,
+  a: 0,
+  b: 0,
 };
 
 function App() {

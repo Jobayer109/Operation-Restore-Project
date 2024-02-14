@@ -13,7 +13,9 @@ const HistoryList = ({ historyItem, handleRestore, disabled }) => {
       </p>
       <p>
         Result:{" "}
-        <span style={{ color: "greenyellow" }}>{historyItem.result}</span>
+        <span style={{ color: "greenyellow" }}>
+          {historyItem.result.toFixed(2)}
+        </span>
       </p>
       <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
         Date: {historyItem.date.toLocaleDateString()}
