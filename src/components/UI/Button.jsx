@@ -3,7 +3,7 @@
 import PropTypes from "prop-types";
 const Button = ({ text, type, onClick, disabled, customStyle }) => {
   const disableStyle = {
-    backgroundColor: "#999",
+    backgroundColor: "red",
     color: "#333",
   };
 

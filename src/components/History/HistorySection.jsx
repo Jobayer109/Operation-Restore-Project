@@ -6,32 +6,26 @@ import "./history.css";
 const HistorySection = ({ histories, restoreHistory, handleRestore }) => {
   console.log(histories);
   return (
-    <>
+    <div className="">
       {histories.length !== 0 && (
         <div>
           <div className="history__header">
             <h4 className="history__title">Operation Histories</h4>
             <div className="line"></div>
           </div>
-          {histories.length === 0 ? (
-            <p className="no__history">
-              <small>No Histories Found</small>
-            </p>
-          ) : (
-            <ul>
-              {histories.map((historyItem) => (
-                <HistoryList
-                  key={historyItem.id}
-                  disabled={restoreHistory === historyItem.id}
-                  handleRestore={handleRestore}
-                  historyItem={historyItem}
-                />
-              ))}
-            </ul>
-          )}
+          <ul className="history__section">
+            {histories.map((historyItem) => (
+              <HistoryList
+                key={historyItem.id}
+                disabled={restoreHistory === historyItem.id}
+                handleRestore={handleRestore}
+                historyItem={historyItem}
+              />
+            ))}
+          </ul>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

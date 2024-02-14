@@ -6,17 +6,37 @@ const HistoryList = ({ historyItem, handleRestore, disabled }) => {
   return (
     <li key={historyItem.id}>
       <p>
-        Operation: {historyItem.inputs.a} {historyItem.operator}{" "}
-        {historyItem.inputs.b}{" "}
+        Operation:{" "}
+        <span style={{ color: "yellow" }}>{historyItem.inputs.a}</span>{" "}
+        {historyItem.operator}{" "}
+        <span style={{ color: "yellow" }}>{historyItem.inputs.b}</span>{" "}
       </p>
-      <p>Result:{historyItem.result}</p>
-      <small>Date: {historyItem.date.toLocaleDateString()}</small> <br />
-      <small>Time: {historyItem.date.toLocaleTimeString()}</small> <br />
+      <p>
+        Result:{" "}
+        <span style={{ color: "greenyellow" }}>{historyItem.result}</span>
+      </p>
+      <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
+        Date: {historyItem.date.toLocaleDateString()}
+      </small>{" "}
+      <br />
+      <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
+        Time: {historyItem.date.toLocaleTimeString()}
+      </small>{" "}
+      <br />
       <Button
         text="Restore"
         type="button"
         onClick={() => handleRestore(historyItem)}
         disabled={disabled}
+        customStyle={{
+          padding: ".15rem .5rem",
+          fontSize: ".9rem",
+          fontWeight: "400",
+          backgroundColor: "green",
+          color: "white",
+          border: "none",
+          borderRadius: "3px",
+        }}
       >
         Restore
       </Button>
