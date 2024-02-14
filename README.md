@@ -1,5 +1,7 @@
 # Mathematical Operation and Restore
 
+![Project Image](./src/assets/project.png)
+
 A simple React project that allows users to perform basic mathematical operations (+, -, *, /) on two inputs. The project also includes a history section to dynamically display the operations and their results. Users can restore specific operations from the history.
 
 ## Table of Contents
