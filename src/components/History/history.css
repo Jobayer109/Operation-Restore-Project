@@ -1,0 +1,35 @@
+.history__header {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.line {
+  width: 70%;
+  background-color: gray;
+  height: 2px;
+  margin-top: 25px;
+}
+
+.history__title {
+  font-size: 1.3vw;
+  background-color: #ffffff;
+  color: #214242;
+  padding: 3.5px;
+  border: none;
+  border-radius: 3px;
+  width: 30%;
+}
+
+.no__history {
+  text-align: center;
+  margin: 2rem;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: yellow;
+  font-size: 1.2vw;
+  letter-spacing: 2px;
+}
+
+/* .no__history > span {
+  font-family: "Courier New", Courier, monospace;
+} */
