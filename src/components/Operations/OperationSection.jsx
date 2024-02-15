@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
-import { AiOutlineClear } from "react-icons/ai";
 import {
   CgMathDivide,
   CgMathMinus,
@@ -42,7 +41,7 @@ const OperationSection = ({ handleOperations, disabled, handleClearState }) => {
 
     {
       id: shortid.generate(),
-      text: <AiOutlineClear />,
+      text: "Clear",
       onClick: handleClearState,
     },
   ];
