@@ -83,9 +83,11 @@ function App() {
 export default App;
 
 /*
-TODO: Handle user input fields    -----> Done
-TODO: Handle operations           -----> Done
-TODO: Handle a list of histories  -----> Done
-TODO: Render history list         -----> Done
-TODO: Restore the history         -----> Done
+TODO: Hide and show date
+TODO: Operation color change after calculation & restore.
+Done: Handle user input fields  
+Done: Handle operations         
+Done: Handle a list of histories
+Done: Render history list       
+Done: Restore the history
 */

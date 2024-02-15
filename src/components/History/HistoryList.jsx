@@ -1,8 +1,16 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { IoTimeSharp } from "react-icons/io5";
 import Button from "../UI/Button";
 
 /* eslint-disable react/prop-types */
 const HistoryList = ({ historyItem, handleRestore, disabled }) => {
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
     <li key={historyItem.id}>
       <p>
@@ -17,13 +25,21 @@ const HistoryList = ({ historyItem, handleRestore, disabled }) => {
           {historyItem.result.toFixed(2)}
         </span>
       </p>
-      <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
-        Date: {historyItem.date.toLocaleDateString()}
-      </small>{" "}
-      <br />
-      <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
-        Time: {historyItem.date.toLocaleTimeString()}
-      </small>{" "}
+      {show === false ? (
+        <IoTimeSharp title="Click to Show date & time" onClick={handleShow} />
+      ) : (
+        <>
+          {" "}
+          <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
+            Date: {historyItem.date.toLocaleDateString()}
+          </small>{" "}
+          <br />
+          <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
+            Time: {historyItem.date.toLocaleTimeString()}
+          </small>
+        </>
+      )}
+
       <br />
       <Button
         text="Restore"
