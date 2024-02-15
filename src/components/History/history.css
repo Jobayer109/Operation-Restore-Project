@@ -46,3 +46,10 @@ li > p {
   font-size: 0.9rem;
   letter-spacing: 1px;
 }
+
+.show__div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 0;
+}

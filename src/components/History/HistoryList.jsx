@@ -8,7 +8,7 @@ const HistoryList = ({ historyItem, handleRestore, disabled }) => {
   const [show, setShow] = useState(false);
 
   const handleShow = () => {
-    setShow(true);
+    setShow(!show);
   };
 
   return (
@@ -25,11 +25,8 @@ const HistoryList = ({ historyItem, handleRestore, disabled }) => {
           {historyItem.result.toFixed(2)}
         </span>
       </p>
-      {show === false ? (
-        <IoTimeSharp title="Click to Show date & time" onClick={handleShow} />
-      ) : (
-        <>
-          {" "}
+      {show && (
+        <p>
           <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
             Date: {historyItem.date.toLocaleDateString()}
           </small>{" "}
@@ -37,27 +34,30 @@ const HistoryList = ({ historyItem, handleRestore, disabled }) => {
           <small style={{ letterSpacing: ".5px", color: "lightgray" }}>
             Time: {historyItem.date.toLocaleTimeString()}
           </small>
-        </>
+        </p>
       )}
 
       <br />
-      <Button
-        text="Restore"
-        type="button"
-        onClick={() => handleRestore(historyItem)}
-        disabled={disabled}
-        customStyle={{
-          padding: ".15rem .5rem",
-          fontSize: ".9rem",
-          fontWeight: "400",
-          backgroundColor: "green",
-          color: "white",
-          border: "none",
-          borderRadius: "3px",
-        }}
-      >
-        Restore
-      </Button>
+      <div className="show__div">
+        <Button
+          text="Restore"
+          type="button"
+          onClick={() => handleRestore(historyItem)}
+          disabled={disabled}
+          customStyle={{
+            padding: ".15rem .5rem",
+            fontSize: ".9rem",
+            fontWeight: "400",
+            backgroundColor: "green",
+            color: "white",
+            border: "none",
+            borderRadius: "3px",
+          }}
+        >
+          Restore
+        </Button>
+        <IoTimeSharp title="Click to Show date & time" onClick={handleShow} />
+      </div>
     </li>
   );
 };
